@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aistrong.hnyc_codecenter.task.dao.DeptInfoDao">
+    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
+        <result column="DEPT_CODE" property="dept_code" jdbcType="VARCHAR"/>
+        <result column="DEPT_NAME" property="dept_name" jdbcType="VARCHAR"/>
+        <result column="DEPT_FULL_NAME" property="dept_full_name" jdbcType="VARCHAR"/>
+        <result column="DEPT_IN_CORP" property="dept_in_corp" jdbcType="VARCHAR"/>
+        <result column="SUPER_DEPT_CODE" property="super_dept_code" jdbcType="VARCHAR"/>
+        <result column="DEPT_TYPE" property="dept_type" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="CHAR"/>
+    </resultMap>
+
+    <insert id="addDeptInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
+        INSERT INTO HNYC_DEPT_INFO (dept_code, dept_name, dept_full_name, dept_in_corp, super_dept_code, dept_type, status)
+        VALUES (
+        #{dept_code, jdbcType=VARCHAR},
+        #{dept_name, jdbcType=VARCHAR},
+        #{dept_full_name, jdbcType=VARCHAR},
+        #{dept_in_corp, jdbcType=VARCHAR},
+        #{super_dept_code, jdbcType=VARCHAR},
+        #{dept_type, jdbcType=VARCHAR},
+        #{status, jdbcType=CHAR}
+        )
+    </insert>
+
+    <select id="getByDeptCode" parameterType="java.lang.String" resultMap="ResultMap">
+        SELECT * FROM HNYC_DEPT_INFO
+        WHERE dept_code = #{dept_code}
+    </select>
+
+    <update id="updateDeptInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
+        UPDATE HNYC_DEPT_INFO SET
+        dept_name = #{dept_name, jdbcType=VARCHAR},
+        dept_full_name = #{dept_full_name, jdbcType=VARCHAR},
+        dept_in_corp = #{dept_in_corp, jdbcType=VARCHAR},
+        super_dept_code = #{super_dept_code, jdbcType=VARCHAR},
+        dept_type = #{dept_type, jdbcType=VARCHAR},
+        status = #{status, jdbcType=CHAR}
+        WHERE
+        dept_code = #{dept_code, jdbcType=VARCHAR}
+    </update>
+</mapper>
