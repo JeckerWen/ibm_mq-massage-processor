@@ -8,17 +8,20 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-        <bean id="quatzTask" class="com.aistrong.hnyc_codecenter.task.taskJobTest"/>
+        <bean id="quatzTask" class="com.aistrong.hnyc_codecenter.task.TaskJob"/>
 
         <bean id="myJobDetail1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
                 <property name="targetObject" ref="quatzTask"/>
-                <property name="targetMethod" value="doTaskFirst"/>
+                <property name="targetMethod" value="doTaskClean"/>
+                <!--
+                <property name="targetMethod" value="doTaskBrowse"/>
+                -->
                 <property name="concurrent" value="false"/>
         </bean>
 
         <bean id="cronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
                 <property name="jobDetail" ref="myJobDetail1"/>
-                <property name="cronExpression" value="20/0 * * * * ?"/>
+                <property name="cronExpression" value="10/0 * * * * ?"/>
         </bean>
 
 

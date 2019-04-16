@@ -10,7 +10,8 @@ public class HeadInfo {
     private String ws_param;
     private Timestamp curr_time;
     private String curr_user;
-    private String rece_info;
+    private String recv_info;
+    private Timestamp recv_time;
 
     public String getMsg_id() {
         return msg_id;
@@ -60,11 +61,19 @@ public class HeadInfo {
         this.curr_user = curr_user;
     }
 
-    public String getRece_info() {
-        return rece_info;
+    public String getRecv_info() {
+        return recv_info;
     }
 
-    public void setRece_info(String rece_info) {
-        this.rece_info = rece_info;
+    public void setRecv_info(String recv_info) {
+        this.recv_info = recv_info;
+    }
+
+    public Timestamp getRecv_time() {
+        return recv_time;
+    }
+
+    public void setRecv_time(Timestamp recv_time) {
+        this.recv_time = recv_time;
     }
 }

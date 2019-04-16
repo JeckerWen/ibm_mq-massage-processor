@@ -11,6 +11,7 @@ public class FeedBackInfo {
     private String ws_method;
     private String ws_param;
     private Timestamp curr_time;
+    private String send_content;
 
     public String getMsg_id() {
         return msg_id;
@@ -66,5 +67,13 @@ public class FeedBackInfo {
 
     public void setCurr_time(Timestamp curr_time) {
         this.curr_time = curr_time;
+    }
+
+    public String getSend_content() {
+        return send_content;
+    }
+
+    public void setSend_content(String send_content) {
+        this.send_content = send_content;
     }
 }

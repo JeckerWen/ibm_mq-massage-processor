@@ -1,11 +1,12 @@
 package com.aistrong.hnyc_codecenter.mq.Method;
 
+import com.aistrong.hnyc_codecenter.common.paramInit.MqParamInit;
 import com.ibm.mq.*;
-import com.aistrong.hnyc_codecenter.mq.MQUtils.Property;
-import com.aistrong.hnyc_codecenter.mq.MQconstant.ConstantMQParam;
+import com.aistrong.hnyc_codecenter.mq.MQconstant.MqParamConstant;
 import com.ibm.mq.constants.MQConstants;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @Desc: 队列管理器通信方法类
@@ -15,69 +16,87 @@ import java.io.IOException;
 
 
 public class MQMsgMethod {
+    /**
+     *创建一个队列管理器 qMgr对象, 和对列 mqQueue对象
+     */
     private static MQQueue mqQueue;
     private static MQQueueManager qMgr;
-    private static String qManagerName = (String) Property.getParam(ConstantMQParam.MQ_QUEUEMANAGERNAME);
-    private static String receiveQueueName = (String) Property.getParam(ConstantMQParam.MQ_QUEUENAME_RECEIVE);
-    private static String sendQueueName = (String) Property.getParam(ConstantMQParam.MQ_QUEUENAME_SEND);
-    private static String hostName = (String) Property.getParam(ConstantMQParam.MQ_HOSTNAME);
-    private static String channelName = (String) Property.getParam(ConstantMQParam.MQ_CHANNEL);
-    private static int port = Integer.parseInt(String.valueOf(Property.getParam(ConstantMQParam.MQ_PORT)));
-    private static int CCSID = Integer.parseInt(String.valueOf(Property.getParam(ConstantMQParam.MQ_CCSID)));
-    private static int qOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_INQUIRE | MQC.MQOO_OUTPUT;
+    /**
+     * 获取队列管理名字
+     */
+    private static String qManagerName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUEMANAGERNAME);
+    /**
+     * 接收队列名字
+     */
+    private static String receiveQueueName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_RECEIVE);
+    /**
+     * 发送队列名称
+     */
+    private static String sendQueueName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_SEND);
+    /**
+     * 队列管理器所在ip
+     */
+    private static String hostName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_HOSTNAME);
+    /**
+     * 通道名字
+     */
+    private static String channelName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_CHANNEL);
+    /**
+     * 队列管理器开放的端口
+     */
+    private static int port = Integer.parseInt(String.valueOf(MqParamInit.MqParamMap.get(MqParamConstant.MQ_PORT)));
+    /**
+     * 字符集编码
+     */
+    private static int CCSID = Integer.parseInt(String.valueOf(MqParamInit.MqParamMap.get(MqParamConstant.MQ_CCSID)));
+    /**
+     *定义队列默认属性
+     */
+    private static int qOptions = MQConstants.MQOO_INPUT_AS_Q_DEF | MQConstants.MQOO_INQUIRE | MQConstants.MQOO_OUTPUT;
 
+    /**
+     * @Desc: 初始化队列管理器
+     * @Author: WenRj
+     * @param:
+     * @return:
+     * @Date: 2019/4/13
+     */
     public static void MQinit() {
         try {
-            MQEnvironment.hostname = hostName;
-            MQEnvironment.port = port;
-            MQEnvironment.channel = channelName;
-            MQEnvironment.CCSID = CCSID;
+            MQEnvironment.hostname = hostName; //设置队列管理者ip
+            MQEnvironment.port = port; //设置队列管理者端口
+            MQEnvironment.channel = channelName; //设置队列管理者连接通道
+            MQEnvironment.CCSID = CCSID; //设置字符集编码
             qMgr = new MQQueueManager(qManagerName);
         } catch (MQException e) {
             e.printStackTrace();
         }
     }
+
     /**
-     * @Desc: 连接消息队列，并将消息发送至队列
+     * @Desc: 发送消息到队列
      * @Author: WenRj
-     * @param:  1.qMgr:队列管理器对象   2.message:要发送的消息信息
+     * @param: qByte: 将要发送的消息
      * @return:
-     * @Date: 2019/3/13
+     * @Date: 2019/4/13
      */
-    public static void putMQMsg(MQQueueManager qMgr, String message) {
-        int openOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_OUTPUT | MQC.MQOO_INQUIRE; //设置访问的消息队列属性
-        try {
-            mqQueue= qMgr.accessQueue(sendQueueName, openOptions);  //获取一个队列对象
-            MQMessage putMessage = new MQMessage();
-            putMessage.writeObject(message); //将消息放入缓存，这里是以对象的形式写入的，避免了中文乱码的情况
-            MQPutMessageOptions pmo = new MQPutMessageOptions();
-            mqQueue.put(putMessage, pmo); //将消息对象中的消息推入消息队列中
-            //mqQueue.close();
-        } catch (MQException ex) {
-            System.out.println("A WebSphere mq error occurred : Completion Method "
-                    + ex.completionCode + " Reason Method " + ex.reasonCode);
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            System.out.println("An error occurred whilst writing to the message buffer: " + ex);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public static void SendMsg(byte[] qByte) {
         try {
             MQMessage qMsg = new MQMessage();
-            qMsg.write(qByte);
+            qMsg.write(qByte); //以字节流的方式发送消息
             MQPutMessageOptions pmo = new MQPutMessageOptions();
             mqQueue = qMgr.accessQueue(sendQueueName, qOptions);
             mqQueue.put(qMsg, pmo);
         } catch (MQException e) {
+            release();
             e.printStackTrace();
             System.out
                     .println("A WebSphere mq error occurred : Completion code "
                             + e.completionCode + " Reason Code is "
                             + e.reasonCode);
         } catch (java.io.IOException e) {
+            release();
             e.printStackTrace();
             System.out
                     .println("An error occurred whilst to the message buffer "
@@ -87,41 +106,20 @@ public class MQMsgMethod {
     }
 
     /**
-     * @Desc: 消费消息队列消息, 一次消费的深度为1, 消息队列深度减1
+     * @Desc: 从接收队列中消费消息，并使队列深度-1
      * @Author: WenRj
-     * @param: 1.qMgr: 队列管理器对象
-     * @return: 1.msgContent: 消息对象
-     * @Date: 2019/3/13
+     * @param:
+     * @return: 返回这次消费的消息字符串
+     * @Date: 2019/4/13
      */
-    public static Object getMQMsgByClean(MQQueueManager qMgr) {
-        int openOptions = MQConstants.MQOO_FAIL_IF_QUIESCING | MQConstants.MQOO_INPUT_AS_Q_DEF |
-                          MQConstants.MQOO_OUTPUT | MQConstants.MQOO_INQUIRE;
-        try {
-            MQQueue mQueue = qMgr.accessQueue(receiveQueueName, openOptions);
-            int depth = mQueue.getCurrentDepth(); //获取当前消息队列的深度
-            if (depth > 0) {
-                MQMessage getMessage = new MQMessage();
-                MQGetMessageOptions gmo = new MQGetMessageOptions();
-                mQueue.get(getMessage, gmo);
-                Object msgContent = getMessage.readObject(); //消费消息队列中的一个消息
-                return msgContent;
-            } else {
-                System.out.println("当前消息队列为空.");
-            }
-        } catch (MQException mqe) {
-            mqe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-     public static String getMQMsgByClean2() {
+     public static String getMQMsgByClean() {
         int openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF | MQConstants.MQOO_OUTPUT | MQConstants.MQOO_INQUIRE;
         try {
             mqQueue = qMgr.accessQueue(receiveQueueName, openOptions);
-            if (mqQueue.getCurrentDepth() == 0) {
-                System.out.println("消息队列为空");
+            int depth = mqQueue.getCurrentDepth();
+            if (depth == 0) {
+                release();
+                System.out.println("消息队列为空"+ (new Date()).toString());
                 return null;
             }
             MQMessage getMessage = new MQMessage();
@@ -133,48 +131,32 @@ public class MQMsgMethod {
             String sMsg = new String(msg, "UTF-8");
             return sMsg;
         } catch (MQException mqe) {
+            release();
             mqe.printStackTrace();
         } catch (Exception e) {
+            release();
             e.printStackTrace();
         }
         return null;
     }
 
-    public static Object getMsgByBrowse(MQQueueManager qMgr) {
+    /**
+     * @Desc: 以浏览的方式接收消息，不会消费消息
+     * @Author: WenRj
+     * @param:
+     * @return: 返回这次的消息字符串
+     * @Date: 2019/4/13
+     */
+    public static String getMsgByBrowse() {
         boolean firstBrowsed = false;
-        int openOptions = MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE;
-        MQQueue mQueue;
-        MQMessage mqMsg = new MQMessage();
-        MQGetMessageOptions mqGetMsgOpts = new MQGetMessageOptions();
-        try {
-            mQueue =qMgr.accessQueue(receiveQueueName, openOptions);
-            if (!firstBrowsed) {
-                mqGetMsgOpts.options |= MQC.MQGMO_WAIT | MQC.MQGMO_BROWSE_FIRST;
-            } else {
-                mqGetMsgOpts.options |= MQC.MQGMO_WAIT | MQC.MQGMO_BROWSE_NEXT;
-            }
-            mQueue.get(mqMsg, mqGetMsgOpts);
-            if (mqMsg.getMessageLength() > 0) {
-                Object message = mqMsg.readObject();
-                return message;
-            }
-        } catch (MQException mqe) {
-                mqe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static String getMsgByBrowse2() {
-        boolean firstBrowsed = false;
-        int openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF | MQConstants.MQOO_OUTPUT | MQConstants.MQOO_INQUIRE | MQC.MQOO_BROWSE;
+        int openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF | MQConstants.MQOO_OUTPUT | MQConstants.MQOO_INQUIRE | MQConstants.MQOO_BROWSE;
         MQMessage mqMsg = new MQMessage();
         MQGetMessageOptions mqGetMsgOpts = new MQGetMessageOptions();
         try {
             mqQueue =qMgr.accessQueue(receiveQueueName, openOptions);
             if (mqQueue.getCurrentDepth() == 0) {
-                System.out.println("消息队列为空");
+                release();
+                System.out.println("消息队列为空"+ (new Date()).toString());
                 return null;
             }
             if (!firstBrowsed) {
@@ -189,8 +171,10 @@ public class MQMsgMethod {
             String sMsg = new String(msg, "UTF-8");
             return sMsg;
         } catch (MQException mqe) {
+            release();
             mqe.printStackTrace();
         } catch (Exception e) {
+            release();
             e.printStackTrace();
         }
         return null;
@@ -205,7 +189,7 @@ public class MQMsgMethod {
             mqQueue.get(retrievedMessage, gmo);
             int length = retrievedMessage.getDataLength();
             if (length == 0) {
-                System.out.println("消息队列为空");
+                System.out.println("消息队列为空"+ (new Date()).toString());
             }
             byte[] msg = new byte[length];
             retrievedMessage.readFully(msg);
@@ -230,6 +214,13 @@ public class MQMsgMethod {
         return null;
     }
 
+    /**
+     * @Desc: 释放消息队列资源, 断开队列管理器连接
+     * @Author: WenRj
+     * @param:
+     * @return:
+     * @Date: 2019/4/13
+     */
     public  static void  release(){
         try {
             mqQueue.close();
@@ -242,11 +233,18 @@ public class MQMsgMethod {
         }
     }
 
+    /**
+     * @Desc: 接收消息整合方法, 通过参数isClean设置是进行消费消息操作或是浏览消息操作
+     * @Author: WenRj
+     * @param: isClean: 1.true: 进行消费消息操作; 2.false: 进行浏览消息操作
+     * @return: 返回获取到消息的字符串
+     * @Date: 2019/4/13
+     */
     public static String getMqMessage(String isClean) {
         if (isClean.equals("true")) {
-            return getMQMsgByClean2();
+            return getMQMsgByClean();
         } else {
-            return getMsgByBrowse2();
+            return getMsgByBrowse();
         }
     }
 

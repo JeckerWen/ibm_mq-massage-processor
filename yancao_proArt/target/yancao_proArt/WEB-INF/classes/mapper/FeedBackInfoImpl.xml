@@ -12,10 +12,11 @@
         <result column="WS_METHOD" property="ws_method" jdbcType="VARCHAR"/>
         <result column="WS_PARAM" property="ws_param" jdbcType="VARCHAR"/>
         <result column="CURR_TIME" property="curr_time" jdbcType="TIMESTAMP"/>
+        <result column="SEND_CONTENT" property="send_content" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addFeedBackInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.FeedBackInfo">
-        INSERT INTO HNYC_FEEDBACK_INFO (msg_id, state_code, state_desc, ws_mark, ws_method, ws_param, curr_time)
+        INSERT INTO HNYC_FEEDBACK_INFO (msg_id, state_code, state_desc, ws_mark, ws_method, ws_param, curr_time, send_content)
         VALUES (
         #{msg_id, jdbcType=VARCHAR},
         #{state_code, jdbcType=VARCHAR},
@@ -23,7 +24,8 @@
         #{ws_mark, jdbcType=VARCHAR},
         #{ws_method, jdbcType=VARCHAR},
         #{ws_param, jdbcType=VARCHAR},
-        #{curr_time, jdbcType=DATE}
+        #{curr_time, jdbcType=TIMESTAMP},
+        #{send_content, jdbcType=VARCHAR}
         )
     </insert>
 </mapper>

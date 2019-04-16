@@ -14,7 +14,7 @@
     </resultMap>
 
     <insert id="addHeadInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.HeadInfo">
-        INSERT INTO HNYC_HEAD_INFO (msg_id, ws_mark, ws_method, ws_param, curr_time, curr_user, rece_info)
+        INSERT INTO HNYC_HEAD_INFO (msg_id, ws_mark, ws_method, ws_param, curr_time, curr_user, recv_info, recv_time)
         VALUES (
         #{msg_id, jdbcType=VARCHAR},
         #{ws_mark, jdbcType=VARCHAR},
@@ -22,7 +22,8 @@
         #{ws_param, jdbcType=VARCHAR},
         #{curr_time, jdbcType=TIMESTAMP},
         #{curr_user, jdbcType=VARCHAR},
-        #{rece_info, jdbcType=VARCHAR}
+        #{recv_info, jdbcType=VARCHAR},
+        #{recv_time, jdbcType=TIMESTAMP}
         )
     </insert>
 
@@ -38,7 +39,8 @@
         ws_param = #{ws_param, jdbcType=VARCHAR},
         curr_time = #{curr_time, jdbcType=TIMESTAMP},
         curr_user = #{curr_user, jdbcType=VARCHAR},
-        rece_info = #{rece_info, jdbcType=VARCHAR}
+        recv_info = #{recv_info, jdbcType=VARCHAR},
+        recv_time = #{recv_time, jdbcType=TIMESTAMP}
         WHERE msg_id = #{msg_id, jdbcType=VARCHAR}
     </update>
 

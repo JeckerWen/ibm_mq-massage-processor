@@ -22,4 +22,9 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
+    <listener>
+        <listener-class>com.aistrong.hnyc_codecenter.common.paramInit.WsParamInit</listener-class>
+        <listener-class>com.aistrong.hnyc_codecenter.common.paramInit.MqParamInit</listener-class>
+    </listener>
+    
 </web-app>

@@ -33,7 +33,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/MQtest")
-public class taskController {
+public class TaskController {
     @Autowired
     private Method method;
 
@@ -60,7 +60,6 @@ public class taskController {
         try {
             MQMsgMethod.MQinit();
             message = MQMsgMethod.getMqMessage(isClean);
-            System.out.println(message);
         } catch (Exception e) {
             System.out.println("获取队列消息失败.");
             e.printStackTrace();
@@ -74,17 +73,17 @@ public class taskController {
             Element headEle = XmlAnalysisUtil.nextElement(rootEle, 1);
             mapHead = XmlAnalysisUtil.traversNode(headEle);
             mapHead.put("curr_time", DateUtil.strToDate((String) mapHead.get("curr_time")));
-            mapHead.put("rece_info", message);
+            mapHead.put("recv_info", message);
+            mapHead.put("recv_time", DateUtil.currTime());
 
             Element dataListEle = XmlAnalysisUtil.nextElement(rootEle, 2);
             Element dataEle = XmlAnalysisUtil.nextElement(dataListEle, 1);
             mapContent = XmlAnalysisUtil.traversNode(dataEle);
-            System.out.println(mapContent);
             boolean isSuccess = method.infoToDao((String) mapHead.get("ws_param"), mapContent);
             if (isSuccess) {
                 BeanUtil.mapToBean(mapHead, headInfo);
-                headInfoService.addHeadInfo(headInfo);
-                feedBackMap = FeedBackUtil.feedBackMqp(mapHead, "001", String.valueOf(new Date().getTime()));
+                headInfoService.saveAndUpdate(headInfo);
+                feedBackMap = FeedBackUtil.feedBackMqp(mapHead, "001", String.valueOf(System.currentTimeMillis() / 1000));
                 String backMsg = XmlAnalysisUtil.mapToXml(feedBackMap);
                 try {
                     MQMsgMethod.MQinit();
@@ -93,7 +92,7 @@ public class taskController {
                     System.out.println("反馈失败, msg_id:" + feedBackMap.get("msg_id"));
                     e.printStackTrace();
                 }
-                feedBackMap.put("curr_time", DateUtil.strToDate((String) feedBackMap.get("curr_time")));
+                feedBackMap.put("send_content", backMsg);
                 FeedBackInfo feedBackInfo = new FeedBackInfo();
                 BeanUtil.mapToBean(feedBackMap, feedBackInfo);
                 feedBackInfoService.addFeedBackInfo(feedBackInfo);

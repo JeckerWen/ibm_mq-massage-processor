@@ -1,16 +1,19 @@
 package com.aistrong.hnyc_codecenter.task.method;
 
 import com.aistrong.hnyc_codecenter.common.constant.WsParamConstant;
-import com.aistrong.hnyc_codecenter.common.paramProcessor.WsParamProcessor;
+import com.aistrong.hnyc_codecenter.common.paramInit.WsParamInit;
 import com.aistrong.hnyc_codecenter.common.util.BeanUtil;
 import com.aistrong.hnyc_codecenter.task.entity.*;
 import com.aistrong.hnyc_codecenter.task.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @Desc: 信息存储相关方法
+ * @Author: WenRj
+ * @Date: 2019/4/13
+ */
 @Component
 public class Method {
     @Autowired
@@ -34,22 +37,16 @@ public class Method {
     @Autowired
     private CigInfoService cigInfoService;
 
-    public static Map WsParamMap = new HashMap();
-
-    public void initMap() {
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_EMPLOYEE), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_EMPLOYEE));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CORP), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CORP));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_DEPT), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_DEPT));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_REGIONALISM), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_REGIONALISM));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG));
-        WsParamMap.put((String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG_TRADEMARK), (String) WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG_TRADEMARK));
-    }
-
+    /**
+     * @Desc: 根据ws_param将信息存储到指定的表， 若不存在该类型的ws_param，则返回一个null值
+     * @Author: WenRj
+     * @param: 1.ws_param: ws_param值; 2.map: 该数据信息
+     * @return: 是否成功
+     * @Date: 2019/4/13
+     */
     public boolean infoToDao(String ws_param, Map map) {
-        initMap();
         ws_param = ws_param.trim();
-        if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_CORP))) {
+        if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CORP))) {
             CorpInfo corpInfo = new CorpInfo();
             try {
                 BeanUtil.mapToBean(map, corpInfo);
@@ -59,7 +56,7 @@ public class Method {
                 e.printStackTrace();
             }
             corpInfoService.saveAndUpdate(corpInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_DEPT))) {
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_DEPT))) {
             DeptInfo deptInfo = new DeptInfo();
             try {
                 BeanUtil.mapToBean(map, deptInfo);
@@ -69,7 +66,7 @@ public class Method {
                 e.printStackTrace();
             }
             deptInfoService.saveAndUpdate(deptInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_REGIONALISM))){
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_REGIONALISM))){
             RegionalismInfo regionalismInfo = new RegionalismInfo();
             try {
                 BeanUtil.mapToBean(map, regionalismInfo);
@@ -79,7 +76,7 @@ public class Method {
                 e.printStackTrace();
             }
             regionalismInfoService.saveAndUpdate(regionalismInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_EMPLOYEE))) {
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_EMPLOYEE))) {
             EmployeeInfo employeeInfo = new EmployeeInfo();
             try {
                 BeanUtil.mapToBean(map, employeeInfo);
@@ -89,7 +86,7 @@ public class Method {
                 e.printStackTrace();
             }
             employeeInfoService.saveAndUpdate(employeeInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO))) {
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO))) {
             ProvideBealerBaseInfo provideBealerBaseInfo = new ProvideBealerBaseInfo();
             try {
                 BeanUtil.mapToBean(map, provideBealerBaseInfo);
@@ -99,7 +96,7 @@ public class Method {
                 e.printStackTrace();
             }
             provideBealerBaseInfoService.saveAndUpdate(provideBealerBaseInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG_TRADEMARK))) {
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CIG_TRADEMARK))) {
             TrademarkInfo trademarkInfo = new TrademarkInfo();
             try {
                 BeanUtil.mapToBean(map, trademarkInfo);
@@ -109,7 +106,7 @@ public class Method {
                 e.printStackTrace();
             }
             trademarkInfoService.saveAndUpdate(trademarkInfo);
-        } else if (ws_param.equals(WsParamProcessor.getParam(WsParamConstant.T_B_C_CIG))) {
+        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CIG))) {
             CigInfo cigInfo = new CigInfo();
             try {
                 BeanUtil.mapToBean(map, cigInfo);
