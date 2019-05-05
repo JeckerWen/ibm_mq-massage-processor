@@ -5,10 +5,10 @@
 
 <mapper namespace="com.aistrong.hnyc_codecenter.task.dao.ProvideBealerBaseInfoDao">
     <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.ProvideBealerBaseInfo">
-        <result column="PROVIDER_CODE" property="provider_code" jdbcType="VARCHAR"/>
-        <result column="PROVIDER_NAME" property="provider_name" jdbcType="VARCHAR"/>
-        <result column="PROVIDER_SIMPLY" property="provider_simply" jdbcType="VARCHAR"/>
-        <result column="CORP_KIND" property="corp_kind" jdbcType="VARCHAR"/>
+        <result column="PROVIDERCODE" property="provider_code" jdbcType="VARCHAR"/>
+        <result column="PROVIDERNAME" property="provider_name" jdbcType="VARCHAR"/>
+        <result column="PROVIDERSIMPLY" property="provider_simply" jdbcType="VARCHAR"/>
+        <result column="CORPKIND" property="corp_kind" jdbcType="VARCHAR"/>
         <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
         <result column="AREA" property="area" jdbcType="VARCHAR"/>
         <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
@@ -18,26 +18,27 @@
         <result column="HTTP" property="http" jdbcType="VARCHAR"/>
         <result column="BANK" property="bank" jdbcType="VARCHAR"/>
         <result column="ACCOUNTS" property="accounts" jdbcType="VARCHAR"/>
-        <result column="TA_NUMBER" property="ta_number" jdbcType="VARCHAR"/>
+        <result column="TANUMBER" property="ta_number" jdbcType="VARCHAR"/>
         <result column="LICENCE" property="licence" jdbcType="VARCHAR"/>
-        <result column="BUSINESS_LICENCE" property="business_licence" jdbcType="VARCHAR"/>
+        <result column="BUSINESSLICENCE" property="business_licence" jdbcType="VARCHAR"/>
         <result column="MENBER1" property="member1" jdbcType="VARCHAR"/>
         <result column="MENBER2" property="member2" jdbcType="VARCHAR"/>
         <result column="ISPIVOT" property="ispivot" jdbcType="CHAR"/>
         <result column="SUPERIOR" property="superior" jdbcType="VARCHAR"/>
-        <result column="SUPERIOR_INDUSTRY" property="superior_industry" jdbcType="VARCHAR"/>
+        <result column="SUPERIORINDUSTRY" property="superior_industry" jdbcType="VARCHAR"/>
         <result column="SYNOPSIS" property="synopsis" jdbcType="VARCHAR"/>
-        <result column="PROVIDER_TYPE" property="provider_type" jdbcType="VARCHAR"/>
+        <result column="PROVIDERTYPE" property="provider_type" jdbcType="VARCHAR"/>
         <result column="CORPORATION" property="corporation" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="CHAR"/>
+        <result column="ORDERNO" property="orderno" jdbcType="VARCHAR"/>
+        <result column="CODEGBM" property="code_gbm" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addProvideBealerBaseInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.ProvideBealerBaseInfo">
-        INSERT INTO HNYC_PROVIDE_BEALER_BASE_INFO
-       (provider_code, provider_name, provider_simply, corp_kind, province, area,
-        address, postalcode, fa, email, http, bank, accounts, ta_number, licence,
-        business_licence, member1, member2, ispivot, superior, superior_industry,
-        synopsis, provider_type, corporation, status)
+        INSERT INTO HNYC_PROVIDE_BEALER_BASE_INFO(providerCode, providerName, providerSimply, corpKind, province, area, address,
+                                                  postalCode, fa, email, http, Bank, accounts, taNumber, licence, businessLicence,
+                                                  member1, member2, isPivot, superior, superiorIndustry, synopsis, providerType,
+                                                  corpOration, status, orderNo, codeGbm)
         VALUES (
         #{provider_code, jdbcType=VARCHAR},
         #{provider_name, jdbcType=VARCHAR},
@@ -63,43 +64,47 @@
         #{synopsis, jdbcType=VARCHAR},
         #{provider_type, jdbcType=VARCHAR},
         #{corporation, jdbcType=VARCHAR},
-        #{status, jdbcType=CHAR}
+        #{status, jdbcType=CHAR},
+        #{orderno, jdbcType=VARCHAR},
+        #{code_gbm, jdbcType=VARCHAR}
         )
     </insert>
     
     <select id="getByProviderCode" parameterType="java.lang.String" resultMap="ResultMap">
         SELECT * FROM HNYC_PROVIDE_BEALER_BASE_INFO
-        WHERE provider_code = #{provider_code}
+        WHERE providerCode = #{provider_code}
     </select>
 
     <update id="updateProvideBealerBaseInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.ProvideBealerBaseInfo">
         UPDATE HNYC_PROVIDE_BEALER_BASE_INFO SET
-        provider_name = #{provider_name, jdbcType=VARCHAR},
-        provider_simply = #{provider_simply, jdbcType=VARCHAR},
-        corp_kind = #{corp_kind, jdbcType=VARCHAR},
+        providerName = #{provider_name, jdbcType=VARCHAR},
+        providerSimply = #{provider_simply, jdbcType=VARCHAR},
+        corpKind = #{corp_kind, jdbcType=VARCHAR},
         province = #{province, jdbcType=VARCHAR},
         area = #{area, jdbcType=VARCHAR},
         address = #{address, jdbcType=VARCHAR},
-        postalcode = #{postalcode, jdbcType=VARCHAR},
+        postalCode = #{postalcode, jdbcType=VARCHAR},
         fa = #{fa, jdbcType=VARCHAR},
         email = #{email, jdbcType=VARCHAR},
         http = #{http, jdbcType=VARCHAR},
         bank = #{bank, jdbcType=VARCHAR},
         accounts = #{accounts, jdbcType=VARCHAR},
-        ta_number = #{ta_number, jdbcType=VARCHAR},
+        taNumber = #{ta_number, jdbcType=VARCHAR},
         licence = #{licence, jdbcType=VARCHAR},
-        business_licence = #{business_licence, jdbcType=VARCHAR},
+        businessLicence = #{business_licence, jdbcType=VARCHAR},
         member1 = #{member1, jdbcType=VARCHAR},
         member2 = #{member2, jdbcType=VARCHAR},
-        ispivot = #{ispivot, jdbcType=CHAR},
+        isPivot = #{ispivot, jdbcType=CHAR},
         superior = #{superior, jdbcType=VARCHAR},
-        superior_industry = #{superior_industry, jdbcType=VARCHAR},
+        superiorIndustry = #{superior_industry, jdbcType=VARCHAR},
         synopsis = #{synopsis, jdbcType=VARCHAR},
-        provider_type = #{provider_type, jdbcType=VARCHAR},
-        corporation = #{corporation, jdbcType=VARCHAR},
-        status = #{status, jdbcType=CHAR}
+        providerType = #{provider_type, jdbcType=VARCHAR},
+        corpOration = #{corporation, jdbcType=VARCHAR},
+        status = #{status, jdbcType=CHAR},
+        orderNo = #{orderno, jdbcType=VARCHAR},
+        codeGbm = #{code_gbm, jdbcType=VARCHAR}
         WHERE
-        provider_code = #{provider_code, jdbcType=VARCHAR}
+        providerCode = #{provider_code, jdbcType=VARCHAR}
     </update>
 
 

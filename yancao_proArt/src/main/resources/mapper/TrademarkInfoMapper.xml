@@ -5,24 +5,28 @@
 
 <mapper namespace="com.aistrong.hnyc_codecenter.task.dao.TrademarkInfoDao">
     <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
-        <result column="TRADEMARK_CODE" property="trademark_code" jdbcType="VARCHAR"/>
-        <result column="TRADEMARK_NAME" property="trademark_name" jdbcType="VARCHAR"/>
+        <result column="TRADEMARKCODE" property="trademark_code" jdbcType="VARCHAR"/>
+        <result column="TRADEMARKNAME" property="trademark_name" jdbcType="VARCHAR"/>
+        <result column="CODE_FULLNAME" property="code_full_name" jdbcType="VARCHAR"/>
         <result column="F_ISINSIDE" property="f_isinside" jdbcType="VARCHAR"/>
-        <result column="PRODUCING_AREA" property="producing_area" jdbcType="VARCHAR"/>
+        <result column="PRODUCINGAREA" property="producing_area" jdbcType="VARCHAR"/>
         <result column="MAKER" property="maker" jdbcType="VARCHAR"/>
         <result column="F_SENIOR" property="f_senior" jdbcType="CHAR"/>
         <result column="F_STRESS" property="f_stress" jdbcType="CHAR"/>
-        <result column="F_TRADEMARK_HUNDREDS" property="f_trademark_hundreds" jdbcType="CHAR"/>
+        <result column="F_TRADEMARKHUNDREDS" property="f_trademark_hundreds" jdbcType="CHAR"/>
         <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="CHAR"/>
+        <result column="CODEGBM" property="code_gbm" jdbcType="VARCHAR"/>
+        <result column="FACTORY" property="factory" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addTrademarkInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
-        INSERT INTO HNYC_TRADEMARK_INFO (trademark_code, trademark_name, f_isinside, producing_area, maker,
-                                    f_senior, f_stress, f_trademark_hundreds, province, status)
+        INSERT INTO HNYC_TRADEMARK_INFO (trademarkCode, trademarkName, codeFullName, f_isInside, producingArea,
+                                         maker, f_senior, f_stress, f_trademarkHundreds, province, status, codeGbm, factory)
         VALUES (
         #{trademark_code ,jdbcType=VARCHAR},
         #{trademark_name ,jdbcType=VARCHAR},
+        #{code_full_name ,jdbcType=VARCHAR},
         #{f_isinside ,jdbcType=VARCHAR},
         #{producing_area ,jdbcType=VARCHAR},
         #{maker ,jdbcType=VARCHAR},
@@ -30,27 +34,32 @@
         #{f_stress ,jdbcType=CHAR},
         #{f_trademark_hundreds ,jdbcType=CHAR},
         #{province ,jdbcType=VARCHAR},
-        #{status ,jdbcType=CHAR}
+        #{status ,jdbcType=CHAR},
+        #{code_gbm ,jdbcType=VARCHAR},
+        #{factory ,jdbcType=VARCHAR}
         )
     </insert>
 
     <select id="getByTrademarkCode" parameterType="java.lang.String" resultMap="ResultMap">
         SELECT * FROM HNYC_TRADEMARK_INFO
-        WHERE trademark_code = #{trademark_code}
+        WHERE trademarkCode = #{trademark_code}
     </select>
 
     <update id="updateTrademarkInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
         UPDATE HNYC_TRADEMARK_INFO SET
-        trademark_name = #{trademark_name ,jdbcType=VARCHAR},
-        f_isinside = #{f_isinside ,jdbcType=VARCHAR},
-        producing_area = #{producing_area ,jdbcType=VARCHAR},
+        trademarkName = #{trademark_name ,jdbcType=VARCHAR},
+        codeFullName = #{code_full_name ,jdbcType=VARCHAR},
+        f_isInside = #{f_isinside ,jdbcType=VARCHAR},
+        producingArea = #{producing_area ,jdbcType=VARCHAR},
         maker = #{maker ,jdbcType=VARCHAR},
         f_senior = #{f_senior ,jdbcType=CHAR},
         f_stress = #{f_stress ,jdbcType=CHAR},
-        f_trademark_hundreds = #{f_trademark_hundreds ,jdbcType=CHAR},
+        f_trademarkHundreds = #{f_trademark_hundreds ,jdbcType=CHAR},
         province = #{province ,jdbcType=VARCHAR},
-        status = #{status ,jdbcType=CHAR}
+        status = #{status ,jdbcType=CHAR},
+        codeGbm = #{code_gbm ,jdbcType=VARCHAR},
+        factory = #{factory ,jdbcType=VARCHAR}
         WHERE
-        trademark_code = #{trademark_code ,jdbcType=VARCHAR}
+        trademarkCode = #{trademark_code ,jdbcType=VARCHAR}
     </update>
 </mapper>

@@ -26,6 +26,8 @@ public class ProvideBealerBaseInfo {
     private String provider_type;
     private String corporation;
     private String status;
+    private String orderno;
+    private String code_gbm;
 
     public String getProvider_code() {
         return provider_code;
@@ -225,5 +227,21 @@ public class ProvideBealerBaseInfo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
+    public String getCode_gbm() {
+        return code_gbm;
+    }
+
+    public void setCode_gbm(String code_gbm) {
+        this.code_gbm = code_gbm;
     }
 }

@@ -5,42 +5,73 @@
 
 <mapper namespace="com.aistrong.hnyc_codecenter.task.dao.DeptInfoDao">
     <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
-        <result column="DEPT_CODE" property="dept_code" jdbcType="VARCHAR"/>
-        <result column="DEPT_NAME" property="dept_name" jdbcType="VARCHAR"/>
-        <result column="DEPT_FULL_NAME" property="dept_full_name" jdbcType="VARCHAR"/>
-        <result column="DEPT_IN_CORP" property="dept_in_corp" jdbcType="VARCHAR"/>
-        <result column="SUPER_DEPT_CODE" property="super_dept_code" jdbcType="VARCHAR"/>
-        <result column="DEPT_TYPE" property="dept_type" jdbcType="VARCHAR"/>
-        <result column="STATUS" property="status" jdbcType="CHAR"/>
+        <result  column="DEPTCODE" property="dept_code" jdbcType="VARCHAR"/>
+        <result  column="DEPTNAME" property="dept_name" jdbcType="VARCHAR"/>
+        <result  column="DEPTFULL_NAME" property="dept_full_name" jdbcType="VARCHAR"/>
+        <result  column="DEPTIN_CORP" property="dept_in_corp" jdbcType="VARCHAR"/>
+        <result  column="SUPERDEPTCODE" property="super_dept_code" jdbcType="VARCHAR"/>
+        <result  column="DEPTTYPE" property="dept_type" jdbcType="VARCHAR"/>
+        <result  column="STATUS" property="status" jdbcType="CHAR"/>
+        <result  column="CODEPURVIEW" property="code_purview" jdbcType="VARCHAR"/>
+        <result  column="CODEGBM" property="code_gbm" jdbcType="VARCHAR"/>
+        <result  column="CODELEVEL" property="code_level" jdbcType="VARCHAR"/>
+        <result  column="CODELEAF" property="code_leaf" jdbcType="VARCHAR"/>
+        <result  column="CODEORDER" property="code_order" jdbcType="VARCHAR"/>
+        <result  column="VIEWCODE" property="view_code" jdbcType="VARCHAR"/>
+        <result  column="CREATOR" property="creator" jdbcType="VARCHAR"/>
+        <result  column="CREATETIME" property="create_time" jdbcType="TIMESTAMP"/>
+        <result  column="MODIFIER" property="modifier" jdbcType="VARCHAR"/>
+        <result  column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <insert id="addDeptInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
-        INSERT INTO HNYC_DEPT_INFO (dept_code, dept_name, dept_full_name, dept_in_corp, super_dept_code, dept_type, status)
+        INSERT INTO HNYC_DEPT_INFO (deptCode, deptName, deptFullName, deptInCorp, superDeptCode, deptType, status, codePurview, codeGbm,
+                                    codeLevel, codeLeaf, codeOrder, viewCode, creator, createTime, modifier, modifyTime)
         VALUES (
-        #{dept_code, jdbcType=VARCHAR},
-        #{dept_name, jdbcType=VARCHAR},
-        #{dept_full_name, jdbcType=VARCHAR},
-        #{dept_in_corp, jdbcType=VARCHAR},
-        #{super_dept_code, jdbcType=VARCHAR},
-        #{dept_type, jdbcType=VARCHAR},
-        #{status, jdbcType=CHAR}
+        #{dept_code,  jdbcType=VARCHAR},
+        #{dept_name,  jdbcType=VARCHAR},
+        #{dept_full_name,  jdbcType=VARCHAR},
+        #{dept_in_corp,  jdbcType=VARCHAR},
+        #{super_dept_code,  jdbcType=VARCHAR},
+        #{dept_type,  jdbcType=VARCHAR},
+        #{status,  jdbcType=CHAR},
+        #{code_purview,  jdbcType=VARCHAR},
+        #{code_gbm,  jdbcType=VARCHAR},
+        #{code_level,  jdbcType=VARCHAR},
+        #{code_leaf,  jdbcType=VARCHAR},
+        #{code_order,  jdbcType=VARCHAR},
+        #{view_code,  jdbcType=VARCHAR},
+        #{creator,  jdbcType=VARCHAR},
+        #{create_time,  jdbcType=TIMESTAMP},
+        #{modifier,  jdbcType=VARCHAR},
+        #{modifytime,  jdbcType=TIMESTAMP}
         )
     </insert>
 
     <select id="getByDeptCode" parameterType="java.lang.String" resultMap="ResultMap">
         SELECT * FROM HNYC_DEPT_INFO
-        WHERE dept_code = #{dept_code}
+        WHERE deptCode = #{dept_code}
     </select>
 
     <update id="updateDeptInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.DeptInfo">
         UPDATE HNYC_DEPT_INFO SET
-        dept_name = #{dept_name, jdbcType=VARCHAR},
-        dept_full_name = #{dept_full_name, jdbcType=VARCHAR},
-        dept_in_corp = #{dept_in_corp, jdbcType=VARCHAR},
-        super_dept_code = #{super_dept_code, jdbcType=VARCHAR},
-        dept_type = #{dept_type, jdbcType=VARCHAR},
-        status = #{status, jdbcType=CHAR}
+        deptName = #{dept_name,  jdbcType=VARCHAR},
+        deptFullName = #{dept_full_name,  jdbcType=VARCHAR},
+        deptInCorp = #{dept_in_corp,  jdbcType=VARCHAR},
+        superDeptCode = #{super_dept_code,  jdbcType=VARCHAR},
+        deptType = #{dept_type,  jdbcType=VARCHAR},
+        status = #{status,  jdbcType=CHAR},
+        codePurview = #{code_purview,  jdbcType=VARCHAR},
+        codeGbm = #{code_gbm,  jdbcType=VARCHAR},
+        codeLevel = #{code_level,  jdbcType=VARCHAR},
+        codeLeaf = #{code_leaf,  jdbcType=VARCHAR},
+        codeOrder = #{code_order,  jdbcType=VARCHAR},
+        viewCode = #{view_code,  jdbcType=VARCHAR},
+        creator = #{creator,  jdbcType=VARCHAR},
+        createTime = #{create_time,  jdbcType=TIMESTAMP},
+        modifier = #{modifier,  jdbcType=VARCHAR},
+        modifyTime = #{modifytime,  jdbcType=TIMESTAMP}
         WHERE
-        dept_code = #{dept_code, jdbcType=VARCHAR}
+        deptCode = #{dept_code, jdbcType=VARCHAR}
     </update>
 </mapper>

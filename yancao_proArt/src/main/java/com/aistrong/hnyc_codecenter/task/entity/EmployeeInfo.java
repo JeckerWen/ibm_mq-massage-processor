@@ -1,10 +1,12 @@
 package com.aistrong.hnyc_codecenter.task.entity;
 
+import java.sql.Timestamp;
+
 public class EmployeeInfo {
     private String personcode;
     private String cnname;
     private String idnum;
-    private String se;
+    private String sex;
     private String nation;
     private String birthday;
     private int age;
@@ -58,9 +60,21 @@ public class EmployeeInfo {
     private String corp_code;
     private String dept_code;
     private String employeecode;
-    private String orderno;
     private String userid;
     private String status;
+    private String orderno;
+    private String mailenabled;
+    private String password;
+    private String personuuid;
+    private Timestamp ondutydate;
+    private Timestamp insystemdate;
+    private String is_short_term;
+    private String account_nature;
+    private String creator;
+    private Timestamp createtime;
+    private String modifier;
+    private Timestamp modifytime;
+
 
     public String getPersoncode() {
         return personcode;
@@ -86,12 +100,12 @@ public class EmployeeInfo {
         this.idnum = idnum;
     }
 
-    public String getSe() {
-        return se;
+    public String getSex() {
+        return sex;
     }
 
-    public void setSe(String se) {
-        this.se = se;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getNation() {
@@ -518,14 +532,6 @@ public class EmployeeInfo {
         this.employeecode = employeecode;
     }
 
-    public String getOrderno() {
-        return orderno;
-    }
-
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
-    }
-
     public String getUserid() {
         return userid;
     }
@@ -540,5 +546,101 @@ public class EmployeeInfo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
+    public String getMailenabled() {
+        return mailenabled;
+    }
+
+    public void setMailenabled(String mailenabled) {
+        this.mailenabled = mailenabled;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPersonuuid() {
+        return personuuid;
+    }
+
+    public void setPersonuuid(String personuuid) {
+        this.personuuid = personuuid;
+    }
+
+    public Timestamp getOndutydate() {
+        return ondutydate;
+    }
+
+    public void setOndutydate(Timestamp ondutydate) {
+        this.ondutydate = ondutydate;
+    }
+
+    public Timestamp getInsystemdate() {
+        return insystemdate;
+    }
+
+    public void setInsystemdate(Timestamp insystemdate) {
+        this.insystemdate = insystemdate;
+    }
+
+    public String getIs_short_term() {
+        return is_short_term;
+    }
+
+    public void setIs_short_term(String is_short_term) {
+        this.is_short_term = is_short_term;
+    }
+
+    public String getAccount_nature() {
+        return account_nature;
+    }
+
+    public void setAccount_nature(String account_nature) {
+        this.account_nature = account_nature;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Timestamp getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Timestamp createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
+    public Timestamp getModifytime() {
+        return modifytime;
+    }
+
+    public void setModifytime(Timestamp modifytime) {
+        this.modifytime = modifytime;
     }
 }

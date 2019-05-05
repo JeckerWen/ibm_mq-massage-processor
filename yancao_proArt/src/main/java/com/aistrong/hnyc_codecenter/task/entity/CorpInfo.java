@@ -3,6 +3,9 @@ package com.aistrong.hnyc_codecenter.task.entity;
 import java.math.BigDecimal;
 
 public class CorpInfo {
+    private String dept_code;
+    private String dept_name;
+    private String super_dept_code;
     private String corp_code;
     private String corp_full_name;
     private String corp_name;
@@ -23,6 +26,30 @@ public class CorpInfo {
     private String ta_number;
     private String accounts;
     private String status;
+
+    public String getDept_code() {
+        return dept_code;
+    }
+
+    public void setDept_code(String dept_code) {
+        this.dept_code = dept_code;
+    }
+
+    public String getDept_name() {
+        return dept_name;
+    }
+
+    public void setDept_name(String dept_name) {
+        this.dept_name = dept_name;
+    }
+
+    public String getSuper_dept_code() {
+        return super_dept_code;
+    }
+
+    public void setSuper_dept_code(String super_dept_code) {
+        this.super_dept_code = super_dept_code;
+    }
 
     public String getCorp_code() {
         return corp_code;

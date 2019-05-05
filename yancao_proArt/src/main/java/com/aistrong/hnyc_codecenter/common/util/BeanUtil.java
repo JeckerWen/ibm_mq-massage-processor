@@ -1,8 +1,12 @@
 package com.aistrong.hnyc_codecenter.common.util;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.DateConverter;
 
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.beans.BeanInfo;
@@ -46,6 +50,9 @@ public class BeanUtil {
             return;
         }
         try {
+            //ConvertUtils.register(new org.apache.commons.beanutils.converters.SqlDateConverter(null), java.sql.Date.class);
+            //ConvertUtils.register(new org.apache.commons.beanutils.converters.SqlTimestampConverter(null), java.util.Date.class);
+            ConvertUtils.register(new org.apache.commons.beanutils.converters.SqlTimestampConverter(null), Timestamp.class);
             BeanUtils.populate(obj, map);
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,17 +6,17 @@
 <mapper namespace="com.aistrong.hnyc_codecenter.task.dao.FeedBackInfoDao">
     <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.FeedBackInfo">
         <id column="MSG_ID" property="msg_id" jdbcType="VARCHAR"/>
-        <result column="STATE_CODE" property="state_code" jdbcType="VARCHAR"/>
-        <result column="STATE_DESC" property="state_desc" jdbcType="VARCHAR"/>
-        <result column="WS_MARK" property="ws_mark" jdbcType="VARCHAR"/>
-        <result column="WS_METHOD" property="ws_method" jdbcType="VARCHAR"/>
-        <result column="WS_PARAM" property="ws_param" jdbcType="VARCHAR"/>
-        <result column="CURR_TIME" property="curr_time" jdbcType="TIMESTAMP"/>
-        <result column="SEND_CONTENT" property="send_content" jdbcType="VARCHAR"/>
+        <result column="STATECODE" property="state_code" jdbcType="VARCHAR"/>
+        <result column="STATEDESC" property="state_desc" jdbcType="VARCHAR"/>
+        <result column="WSMARK" property="ws_mark" jdbcType="VARCHAR"/>
+        <result column="WSMETHOD" property="ws_method" jdbcType="VARCHAR"/>
+        <result column="WSPARAM" property="ws_param" jdbcType="VARCHAR"/>
+        <result column="CURRTIME" property="curr_time" jdbcType="TIMESTAMP"/>
+        <result column="SENDCONTENT" property="send_content" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addFeedBackInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.FeedBackInfo">
-        INSERT INTO HNYC_FEEDBACK_INFO (msg_id, state_code, state_desc, ws_mark, ws_method, ws_param, curr_time, send_content)
+        INSERT INTO HNYC_FEEDBACK_INFO (msgId, stateCode, stateDesc, wsMark, wsMethod, wsParam, currTime, sendContent)
         VALUES (
         #{msg_id, jdbcType=VARCHAR},
         #{state_code, jdbcType=VARCHAR},

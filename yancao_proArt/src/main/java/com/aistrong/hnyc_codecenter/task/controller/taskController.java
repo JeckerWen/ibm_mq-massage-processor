@@ -4,13 +4,8 @@ import com.aistrong.hnyc_codecenter.task.method.Method;
 import com.aistrong.hnyc_codecenter.task.service.DeptInfoService;
 import com.aistrong.hnyc_codecenter.task.service.FeedBackInfoService;
 import com.aistrong.hnyc_codecenter.task.service.HeadInfoService;
-import com.ibm.mq.MQQueueManager;
 import com.aistrong.hnyc_codecenter.mq.Method.MQMsgMethod;
 import com.aistrong.hnyc_codecenter.xmlAnalysis.XmlAnalysisUtil;
-import com.aistrong.hnyc_codecenter.task.dao.DeptInfoDao;
-import com.aistrong.hnyc_codecenter.task.dao.FeedBackInfoDao;
-import com.aistrong.hnyc_codecenter.task.dao.HeadInfoDao;
-import com.aistrong.hnyc_codecenter.task.entity.DeptInfo;
 import com.aistrong.hnyc_codecenter.task.entity.FeedBackInfo;
 import com.aistrong.hnyc_codecenter.task.entity.HeadInfo;
 import com.aistrong.hnyc_codecenter.common.util.BeanUtil;
@@ -82,6 +77,9 @@ public class TaskController {
             boolean isSuccess = method.infoToDao((String) mapHead.get("ws_param"), mapContent);
             if (isSuccess) {
                 BeanUtil.mapToBean(mapHead, headInfo);
+                System.out.println("11111111111111111111111111");
+                System.out.println(headInfo.getMsg_id());
+                System.out.println("11111111111111111111111112");
                 headInfoService.saveAndUpdate(headInfo);
                 feedBackMap = FeedBackUtil.feedBackMqp(mapHead, "001", String.valueOf(System.currentTimeMillis() / 1000));
                 String backMsg = XmlAnalysisUtil.mapToXml(feedBackMap);

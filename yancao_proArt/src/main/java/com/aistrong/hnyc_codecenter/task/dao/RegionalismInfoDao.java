@@ -5,10 +5,10 @@ import com.aistrong.hnyc_codecenter.task.entity.RegionalismInfo;
 import java.util.List;
 
 public interface RegionalismInfoDao {
-    public void addRegionalismInfo(RegionalismInfo regionalismInfo);
+    void addRegionalismInfo(RegionalismInfo regionalismInfo);
 
-    public List<RegionalismInfo> getByRegionalismCode(String regionalism_code);
+    List<RegionalismInfo> getByRegionalismCode(String regionalism_code);
 
-    public void updateRegionalismInfo(RegionalismInfo regionalismInfo);
+    void updateRegionalismInfo(RegionalismInfo regionalismInfo);
 
 }

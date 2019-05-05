@@ -8,10 +8,10 @@ public class HeadInfo {
     private String ws_mark;
     private String ws_method;
     private String ws_param;
+    private Timestamp recv_time;
     private Timestamp curr_time;
     private String curr_user;
     private String recv_info;
-    private Timestamp recv_time;
 
     public String getMsg_id() {
         return msg_id;
@@ -45,6 +45,14 @@ public class HeadInfo {
         this.ws_param = ws_param;
     }
 
+    public Timestamp getRecv_time() {
+        return recv_time;
+    }
+
+    public void setRecv_time(Timestamp recv_time) {
+        this.recv_time = recv_time;
+    }
+
     public Timestamp getCurr_time() {
         return curr_time;
     }
@@ -67,13 +75,5 @@ public class HeadInfo {
 
     public void setRecv_info(String recv_info) {
         this.recv_info = recv_info;
-    }
-
-    public Timestamp getRecv_time() {
-        return recv_time;
-    }
-
-    public void setRecv_time(Timestamp recv_time) {
-        this.recv_time = recv_time;
     }
 }

@@ -5,43 +5,44 @@
 
 <mapper namespace="com.aistrong.hnyc_codecenter.task.dao.HeadInfoDao">
     <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.HeadInfo">
-        <id column="MSG_ID" property="msg_id" jdbcType="VARCHAR"/>
-        <result column="WS_MARK" property="ws_mark" jdbcType="VARCHAR"/>
-        <result column="WS_METHOD" property="ws_method" jdbcType="VARCHAR"/>
-        <result column="WS_PARAM" property="ws_param" jdbcType="VARCHAR"/>
-        <result column="CURR_TIME" property="curr_time" jdbcType="TIMESTAMP"/>
-        <result column="CURR_USER" property="curr_user" jdbcType="VARCHAR"/>
+        <result column="MSGID" property="msg_id" jdbcType="VARCHAR"/>
+        <result column="WSMARK" property="ws_mark" jdbcType="VARCHAR"/>
+        <result column="WSMETHOD" property="ws_method" jdbcType="VARCHAR"/>
+        <result column="WSPARAM" property="ws_param" jdbcType="VARCHAR"/>
+        <result column="CURRTIME" property="curr_time" jdbcType="TIMESTAMP"/>
+        <result column="CURRUSER" property="curr_user" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addHeadInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.HeadInfo">
-        INSERT INTO HNYC_HEAD_INFO (msg_id, ws_mark, ws_method, ws_param, curr_time, curr_user, recv_info, recv_time)
+        INSERT INTO HNYC_HEAD_INFO (msgId, wsMark, wsMethod, wsParam, recvTime, currTime, currUser, recvInfo)
         VALUES (
         #{msg_id, jdbcType=VARCHAR},
         #{ws_mark, jdbcType=VARCHAR},
         #{ws_method, jdbcType=VARCHAR},
         #{ws_param, jdbcType=VARCHAR},
+        #{recv_time, jdbcType=TIMESTAMP},
         #{curr_time, jdbcType=TIMESTAMP},
         #{curr_user, jdbcType=VARCHAR},
-        #{recv_info, jdbcType=VARCHAR},
-        #{recv_time, jdbcType=TIMESTAMP}
+        #{recv_info, jdbcType=VARCHAR}
         )
     </insert>
 
     <select id="getByMsgId" parameterType="java.lang.String" resultMap="ResultMap">
         SELECT * FROM HNYC_HEAD_INFO
-        WHERE msg_id = #{msg_id}
+        WHERE msgId = #{msg_id}
     </select>
 
     <update id="updateHeadInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.HeadInfo">
         UPDATE HNYC_HEAD_INFO SET
-        ws_mark = #{ws_mark, jdbcType=VARCHAR},
-        ws_method = #{ws_method, jdbcType=VARCHAR},
-        ws_param = #{ws_param, jdbcType=VARCHAR},
-        curr_time = #{curr_time, jdbcType=TIMESTAMP},
-        curr_user = #{curr_user, jdbcType=VARCHAR},
-        recv_info = #{recv_info, jdbcType=VARCHAR},
-        recv_time = #{recv_time, jdbcType=TIMESTAMP}
-        WHERE msg_id = #{msg_id, jdbcType=VARCHAR}
+        wsMark = #{ws_mark,  jdbcType=VARCHAR},
+        wsMethod = #{ws_method,  jdbcType=VARCHAR},
+        wsParam = #{ws_param,  jdbcType=VARCHAR},
+        recvTime = #{recv_time,  jdbcType=TIMESTAMP},
+        currTime = #{curr_time,  jdbcType=TIMESTAMP},
+        currUser = #{curr_user,  jdbcType=VARCHAR},
+        recvInfo = #{recv_info,  jdbcType=VARCHAR}
+        WHERE
+        msgId = #{msg_id,  jdbcType=VARCHAR}
     </update>
 
 </mapper>

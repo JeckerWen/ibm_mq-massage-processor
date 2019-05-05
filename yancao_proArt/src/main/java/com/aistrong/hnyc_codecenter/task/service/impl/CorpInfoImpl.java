@@ -22,7 +22,7 @@ public class CorpInfoImpl implements CorpInfoService {
     @Override
     public void saveAndUpdate(CorpInfo corpInfo) {
         List<CorpInfo> list = new ArrayList<CorpInfo>();
-        list = corpInfoDao.getByCorpCode(corpInfo.getCorp_code());
+        list = corpInfoDao.getByCorpCode(corpInfo.getDept_code());
         if (list.size() > 0) {
             corpInfoDao.updateCorpInfo(corpInfo);
         } else {

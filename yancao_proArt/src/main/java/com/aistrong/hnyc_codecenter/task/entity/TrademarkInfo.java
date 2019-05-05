@@ -3,6 +3,7 @@ package com.aistrong.hnyc_codecenter.task.entity;
 public class TrademarkInfo {
     private String trademark_code;
     private String trademark_name;
+    private String code_full_name;
     private String f_isinside;
     private String producing_area;
     private String maker;
@@ -11,6 +12,8 @@ public class TrademarkInfo {
     private String f_trademark_hundreds;
     private String province;
     private String status;
+    private String code_gbm;
+    private String factory;
 
     public String getTrademark_code() {
         return trademark_code;
@@ -88,7 +91,32 @@ public class TrademarkInfo {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(String status)
+    {
         this.status = status;
+    }
+
+    public String getCode_full_name() {
+        return code_full_name;
+    }
+
+    public void setCode_full_name(String code_full_name) {
+        this.code_full_name = code_full_name;
+    }
+
+    public String getCode_gbm() {
+        return code_gbm;
+    }
+
+    public void setCode_gbm(String code_gbm) {
+        this.code_gbm = code_gbm;
+    }
+
+    public String getFactory() {
+        return factory;
+    }
+
+    public void setFactory(String factory) {
+        this.factory = factory;
     }
 }

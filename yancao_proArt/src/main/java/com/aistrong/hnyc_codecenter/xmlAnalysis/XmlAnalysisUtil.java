@@ -4,6 +4,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.XMLWriter;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.StringWriter;
