@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aistrong.hnyc_codecenter.system.dao.SysParamDao">
+    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.system.entity.SysParam">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+        <result column="MEMO" property="memo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllSysParam" resultMap="ResultMap">
+        SELECT * FROM HNYC_WS_PARAM
+    </select>
+</mapper>

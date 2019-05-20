@@ -24,31 +24,31 @@ public class MQMsgMethod {
     /**
      * 获取队列管理名字
      */
-    private static String qManagerName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUEMANAGERNAME);
+    private static String qManagerName = MqParamConstant.MqParamMap.get(MqParamConstant.MQ_QUEUEMANAGERNAME);
     /**
      * 接收队列名字
      */
-    private static String receiveQueueName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_RECEIVE);
+    private static String receiveQueueName = MqParamConstant.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_RECEIVE);
     /**
      * 发送队列名称
      */
-    private static String sendQueueName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_SEND);
+    private static String sendQueueName = MqParamConstant.MqParamMap.get(MqParamConstant.MQ_QUEUENAME_SEND);
     /**
      * 队列管理器所在ip
      */
-    private static String hostName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_HOSTNAME);
+    private static String hostName = MqParamConstant.MqParamMap.get(MqParamConstant.MQ_HOSTNAME);
     /**
      * 通道名字
      */
-    private static String channelName = MqParamInit.MqParamMap.get(MqParamConstant.MQ_CHANNEL);
+    private static String channelName = MqParamConstant.MqParamMap.get(MqParamConstant.MQ_CHANNEL);
     /**
      * 队列管理器开放的端口
      */
-    private static int port = Integer.parseInt(String.valueOf(MqParamInit.MqParamMap.get(MqParamConstant.MQ_PORT)));
+    private static int port = Integer.parseInt(String.valueOf(MqParamConstant.MqParamMap.get(MqParamConstant.MQ_PORT)));
     /**
      * 字符集编码
      */
-    private static int CCSID = Integer.parseInt(String.valueOf(MqParamInit.MqParamMap.get(MqParamConstant.MQ_CCSID)));
+    private static int CCSID = Integer.parseInt(String.valueOf(MqParamConstant.MqParamMap.get(MqParamConstant.MQ_CCSID)));
     /**
      *定义队列默认属性
      */
@@ -119,7 +119,7 @@ public class MQMsgMethod {
             int depth = mqQueue.getCurrentDepth();
             if (depth == 0) {
                 release();
-                System.out.println("消息队列为空"+ (new Date()).toString());
+                System.out.println("消息队列为空 "+ (new Date()).toString());
                 return null;
             }
             MQMessage getMessage = new MQMessage();

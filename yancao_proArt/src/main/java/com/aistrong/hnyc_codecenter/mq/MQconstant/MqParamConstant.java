@@ -1,4 +1,8 @@
 package com.aistrong.hnyc_codecenter.mq.MQconstant;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Desc: 队列管理器参数
  * @Author: WenRj
@@ -6,6 +10,7 @@ package com.aistrong.hnyc_codecenter.mq.MQconstant;
  */
 
 public class MqParamConstant {
+    public static final Map<String, String> MqParamMap = new HashMap<>();
     /**
      * 队列管理器服务器所在地址
      */

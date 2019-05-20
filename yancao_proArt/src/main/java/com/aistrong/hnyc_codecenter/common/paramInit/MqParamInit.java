@@ -12,13 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
-public class MqParamInit extends HttpServlet implements ServletContextListener {
-    public static final Map<String, String> MqParamMap = new HashMap<>();
 
+public class MqParamInit extends HttpServlet implements ServletContextListener {
     public void init() throws ServletException {
 
     }
@@ -46,13 +43,13 @@ public class MqParamInit extends HttpServlet implements ServletContextListener {
         }
         try {
             properties.load(is);
-            MqParamMap.put(MqParamConstant.MQ_HOSTNAME, properties.getProperty(MqParamConstant.MQ_HOSTNAME));
-            MqParamMap.put(MqParamConstant.MQ_CHANNEL, properties.getProperty(MqParamConstant.MQ_CHANNEL));
-            MqParamMap.put(MqParamConstant.MQ_PORT, properties.getProperty(MqParamConstant.MQ_PORT));
-            MqParamMap.put(MqParamConstant.MQ_CCSID, properties.getProperty(MqParamConstant.MQ_CCSID));
-            MqParamMap.put(MqParamConstant.MQ_QUEUEMANAGERNAME, properties.getProperty(MqParamConstant.MQ_QUEUEMANAGERNAME));
-            MqParamMap.put(MqParamConstant.MQ_QUEUENAME_RECEIVE, properties.getProperty(MqParamConstant.MQ_QUEUENAME_RECEIVE));
-            MqParamMap.put(MqParamConstant.MQ_QUEUENAME_SEND, properties.getProperty(MqParamConstant.MQ_QUEUENAME_SEND));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_HOSTNAME, properties.getProperty(MqParamConstant.MQ_HOSTNAME));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_CHANNEL, properties.getProperty(MqParamConstant.MQ_CHANNEL));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_PORT, properties.getProperty(MqParamConstant.MQ_PORT));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_CCSID, properties.getProperty(MqParamConstant.MQ_CCSID));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_QUEUEMANAGERNAME, properties.getProperty(MqParamConstant.MQ_QUEUEMANAGERNAME));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_QUEUENAME_RECEIVE, properties.getProperty(MqParamConstant.MQ_QUEUENAME_RECEIVE));
+            MqParamConstant.MqParamMap.put(MqParamConstant.MQ_QUEUENAME_SEND, properties.getProperty(MqParamConstant.MQ_QUEUENAME_SEND));
             is.close();
         } catch (IOException e) {
             e.printStackTrace();

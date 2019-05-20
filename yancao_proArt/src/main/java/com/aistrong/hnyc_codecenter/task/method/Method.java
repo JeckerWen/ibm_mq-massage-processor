@@ -1,7 +1,6 @@
 package com.aistrong.hnyc_codecenter.task.method;
 
 import com.aistrong.hnyc_codecenter.common.constant.WsParamConstant;
-import com.aistrong.hnyc_codecenter.common.paramInit.WsParamInit;
 import com.aistrong.hnyc_codecenter.common.util.BeanUtil;
 import com.aistrong.hnyc_codecenter.task.entity.*;
 import com.aistrong.hnyc_codecenter.task.service.*;
@@ -46,7 +45,7 @@ public class Method {
      */
     public boolean infoToDao(String ws_param, Map map) {
         ws_param = ws_param.trim();
-        if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CORP))) {
+        if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_CORP))) {
             CorpInfo corpInfo = new CorpInfo();
             try {
                 BeanUtil.mapToBean(map, corpInfo);
@@ -56,7 +55,7 @@ public class Method {
                 e.printStackTrace();
             }
             corpInfoService.saveAndUpdate(corpInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_DEPT))) {
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_DEPT))) {
             DeptInfo deptInfo = new DeptInfo();
             try {
                 BeanUtil.mapToBean(map, deptInfo);
@@ -66,7 +65,7 @@ public class Method {
                 e.printStackTrace();
             }
             deptInfoService.saveAndUpdate(deptInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_REGIONALISM))){
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_REGIONALISM))){
             RegionalismInfo regionalismInfo = new RegionalismInfo();
             try {
                 BeanUtil.mapToBean(map, regionalismInfo);
@@ -76,7 +75,7 @@ public class Method {
                 e.printStackTrace();
             }
             regionalismInfoService.saveAndUpdate(regionalismInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_EMPLOYEE))) {
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_EMPLOYEE))) {
             EmployeeInfo employeeInfo = new EmployeeInfo();
             try {
                 BeanUtil.mapToBean(map, employeeInfo);
@@ -86,7 +85,7 @@ public class Method {
                 e.printStackTrace();
             }
             employeeInfoService.saveAndUpdate(employeeInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO))) {
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_PROVIDE_DEALER_BASEINFO))) {
             ProvideBealerBaseInfo provideBealerBaseInfo = new ProvideBealerBaseInfo();
             try {
                 BeanUtil.mapToBean(map, provideBealerBaseInfo);
@@ -96,7 +95,7 @@ public class Method {
                 e.printStackTrace();
             }
             provideBealerBaseInfoService.saveAndUpdate(provideBealerBaseInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CIG_TRADEMARK))) {
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_CIG_TRADEMARK))) {
             TrademarkInfo trademarkInfo = new TrademarkInfo();
             try {
                 BeanUtil.mapToBean(map, trademarkInfo);
@@ -106,7 +105,7 @@ public class Method {
                 e.printStackTrace();
             }
             trademarkInfoService.saveAndUpdate(trademarkInfo);
-        } else if (ws_param.equals(WsParamInit.WsParamMap.get(WsParamConstant.T_B_C_CIG))) {
+        } else if (ws_param.equals(WsParamConstant.paramMap.get(WsParamConstant.T_B_C_CIG))) {
             CigInfo cigInfo = new CigInfo();
             try {
                 BeanUtil.mapToBean(map, cigInfo);

@@ -1,11 +1,16 @@
 package com.aistrong.hnyc_codecenter.common.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Desc: ws_param参数: 通过ws_param来确定xml数据信息类型
  * @Author: WenRj
  * @Date: 2019/4/13
  */
 public class WsParamConstant {
+
+    public static Map<String, String> paramMap = new HashMap<>();
     /**
      * 人员信息
      */
@@ -34,4 +39,5 @@ public class WsParamConstant {
      * 卷烟规格信息
      */
     public static final String T_B_C_CIG = "T_B_C_CIG";
+
 }
