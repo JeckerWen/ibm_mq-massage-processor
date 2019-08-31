@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.aistrong.hnyc_codecenter.task.dao.CigInfoDao">
-    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.CigInfo">
+<mapper namespace="com.wenrj.yc_codecenter.task.dao.CigInfoDao">
+    <resultMap id="ResultMap" type="com.wenrj.yc_codecenter.task.entity.CigInfo">
         <result column="CIGCODE" property="cig_code" jdbcType="VARCHAR"/>
         <result column="CIGNAME" property="cig_name" jdbcType="VARCHAR"/>
         <result column="CIGHELPER" property="cig_helper" jdbcType="VARCHAR"/>
@@ -53,7 +53,7 @@
         <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <insert id="addCigInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.CigInfo">
+    <insert id="addCigInfo" parameterType="com.wenrj.yc_codecenter.task.entity.CigInfo">
         INSERT INTO HNYC_CIG_INFO (cigCode, cigName, cigHelper, codeFullName, maker, cigTrademark, barCode,
                                    hbarCode, xbarCode, cigNewsign, tar, nicotine, factory, cigState, classCode,
                                    packageType, packageCode, cigCategory, manufacturer, status, codeList, codeGbm,
@@ -116,7 +116,7 @@
         WHERE cigCode = #{cig_code}
     </select>
 
-    <update id="updateCigInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.CigInfo">
+    <update id="updateCigInfo" parameterType="com.wenrj.yc_codecenter.task.entity.CigInfo">
         UPDATE HNYC_CIG_INFO SET
         cigName = #{cig_name, jdbcType=VARCHAR},
         cigHelper = #{cig_helper, jdbcType=VARCHAR},

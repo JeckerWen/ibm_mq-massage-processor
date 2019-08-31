@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.aistrong.hnyc_codecenter.task.dao.LeafTypeInfoDao">
-    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.LeafTypeInfo">
+<mapper namespace="com.wenrj.yc_codecenter.task.dao.LeafTypeInfoDao">
+    <resultMap id="ResultMap" type="com.wenrj.yc_codecenter.task.entity.LeafTypeInfo">
         <result column="TYPE_CODE" property="type_code" jdbcType="VARCHAR"/>
         <result column="TYPE_NAME" property="type_name" jdbcType="VARCHAR"/>
         <result column="PRODUCTION_FLAG" property="production_flag" jdbcType="CHAR"/>
@@ -16,7 +16,7 @@
         <result column="CODE_GBM" property="code_gbm" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="addLeafTypeInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.LeafTypeInfo">
+    <insert id="addLeafTypeInfo" parameterType="com.wenrj.yc_codecenter.task.entity.LeafTypeInfo">
         INSERT INTO LEAF_TYPE_INFO (type_code, type_name, production_flag, move_flag, parch_flag, other_flag, end_flag, code_flag, code_gbm)
         VALUES (
         #{type_code, jdbcType=VARCHAR},

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wenrj.yc_codecenter.system.dao.FeedbackStatusDao">
+    <resultMap id="ResultMap" type="com.wenrj.yc_codecenter.system.entity.FeedbackStatus">
+        <id column="STATUSCODE" property="statusCode" jdbcType="VARCHAR"/>
+        <result column="DESC" property="desc" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllFeedBackStatus" resultMap="ResultMap">
+        SELECT * FROM feedback_status
+    </select>
+</mapper>

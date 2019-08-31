@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.aistrong.hnyc_codecenter.task.dao.TrademarkInfoDao">
-    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
+<mapper namespace="com.wenrj.yc_codecenter.task.dao.TrademarkInfoDao">
+    <resultMap id="ResultMap" type="com.wenrj.yc_codecenter.task.entity.TrademarkInfo">
         <result column="TRADEMARKCODE" property="trademark_code" jdbcType="VARCHAR"/>
         <result column="TRADEMARKNAME" property="trademark_name" jdbcType="VARCHAR"/>
         <result column="CODE_FULLNAME" property="code_full_name" jdbcType="VARCHAR"/>
@@ -20,7 +20,7 @@
         <result column="FACTORY" property="factory" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="addTrademarkInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
+    <insert id="addTrademarkInfo" parameterType="com.wenrj.yc_codecenter.task.entity.TrademarkInfo">
         INSERT INTO HNYC_TRADEMARK_INFO (trademarkCode, trademarkName, codeFullName, f_isInside, producingArea,
                                          maker, f_senior, f_stress, f_trademarkHundreds, province, status, codeGbm, factory)
         VALUES (
@@ -45,7 +45,7 @@
         WHERE trademarkCode = #{trademark_code}
     </select>
 
-    <update id="updateTrademarkInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.TrademarkInfo">
+    <update id="updateTrademarkInfo" parameterType="com.wenrj.yc_codecenter.task.entity.TrademarkInfo">
         UPDATE HNYC_TRADEMARK_INFO SET
         trademarkName = #{trademark_name ,jdbcType=VARCHAR},
         codeFullName = #{code_full_name ,jdbcType=VARCHAR},

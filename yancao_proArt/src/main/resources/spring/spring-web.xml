@@ -35,5 +35,5 @@
     </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.aistrong.hnyc_codecenter.task.controller" />
+    <context:component-scan base-package="com.wenrj.yc_codecenter.task.controller" />
 </beans>

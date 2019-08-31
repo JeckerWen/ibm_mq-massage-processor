@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-        <bean id="quatzTask" class="com.aistrong.hnyc_codecenter.task.TaskJob"/>
+        <bean id="quatzTask" class="com.wenrj.yc_codecenter.task.TaskJob"/>
 
         <bean id="myJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
                 <property name="targetObject" ref="quatzTask"/>

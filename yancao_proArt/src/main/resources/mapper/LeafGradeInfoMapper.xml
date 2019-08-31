@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.aistrong.hnyc_codecenter.task.dao.LeafGradeInfoDao">
-    <resultMap id="ResultMap" type="com.aistrong.hnyc_codecenter.task.entity.LeafGradeInfo">
+<mapper namespace="com.wenrj.yc_codecenter.task.dao.LeafGradeInfoDao">
+    <resultMap id="ResultMap" type="com.wenrj.yc_codecenter.task.entity.LeafGradeInfo">
         <result column="GRADE_CODE" property="grade_code" jdbcType="VARCHAR"/>
         <result column="GRADE_NAME" property="grade_name" jdbcType="VARCHAR"/>
         <result column="LEAF_GRADE" property="leaf_grade" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
         <result column="CODE_GBM" property="code_gbm" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="addLeafGradeInfo" parameterType="com.aistrong.hnyc_codecenter.task.entity.LeafGradeInfo">
+    <insert id="addLeafGradeInfo" parameterType="com.wenrj.yc_codecenter.task.entity.LeafGradeInfo">
         INSERT INTO LEAF_GRADE_INFO (grade_code, grade_name, leaf_grade, big_grade_code, level_code, type_code,
                                      part_code, color_code, state_code, state_code_name, production_flag, move_flag,
                                      parch_flag, other_flag, end_flag, code_flag, code_gbm)
