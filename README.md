@@ -83,7 +83,8 @@
   ````xml
   <?xml version="1.0" encoding="GBK"?>
   <dataset>
-  <head>	//消息头部信息				<msg_id>MDM_TOBACORIG_201104</msg_id>
+  <head>	//消息头部信息				
+  <msg_id>MDM_TOBACORIG_201104</msg_id>
   <ws_mark>HNYC_MDM</ws_mark>
   <ws_method>transBaseCode</ws_method>
   <ws_param>t_b_c_cig_trademark</ws_param>
