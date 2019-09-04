@@ -109,7 +109,7 @@
   </dataset>
   ````
 
-
+> **常见错误可参考[文档](https://github.com/JeckerWen/ibm_mq-massage-processor/blob/master/%E4%BD%BF%E7%94%A8IBM_MQ%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.md),后面逐步完善。同时欢迎任何人完善。^.^**
 > **欢迎任何人参与和完善。欢迎交流:e-mail:：jeckerWen@gmail.com**
 
 
